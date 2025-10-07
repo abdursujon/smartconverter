@@ -1,0 +1,47 @@
+<?php require('template/header.phtml') ?>
+<link href="/css/calculator.css" rel="stylesheet">
+
+<form class="calculator-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Number 1</label>
+                <input type="text" name="number1" class="form-control" value="<?php if (isset($_POST['number1'])) { echo $_POST['number1']; } ?>"/>
+            </div>
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+            <div class="form-group">
+                <label>Operator</label>
+                <div class="select-wrapper">
+                    <select name="operator" class="form-control">
+                        <option>+</option>
+                        <option>-</option>
+                        <option>/</option>
+                        <option>*</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Number 2</label>
+                <input type="text" name="number2" class="form-control" value="<?php if (isset($_POST['number2'])) { echo $_POST['number2']; } ?>"/>
+            </div>
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+            <div class="form-group">
+                 <label>&nbsp;</label>
+                <input type="submit" value="Calculate" name="submit" class="btn btn-primary btn-submit"/>
+            </div>
+        </div>
+    </div>
+</form>
+
+<?php if (isset($view->result)) : ?>
+    <p class="result-text"><?php echo $view->result; ?></p>
+<?php endif; ?>
+
+<?php require('template/footer.phtml') ?>

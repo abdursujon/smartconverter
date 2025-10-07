@@ -8,20 +8,20 @@ main{
 
 }
 #menu {
-    border-top: solid 6px #f00;
-    background-color: #f00;
+    border-top: solid 6px #6f0101;
+    background-color: #6f0101;
     color: #fff;
     /*height: 400px;*/
 }
 
 #menu a {
-    background-color: #f00;
+    background-color: #6f0101;
     color: #fff;
     text-decoration: none;
     display: block;
 }
 #menu a:hover {
-    background-color: #f00;
+    background-color: #6f0101;
     color: #ddd;
     text-decoration:underline;
     display: block;
@@ -29,7 +29,7 @@ main{
 
 #content {
     background-color: #fff;
-    border-top: solid 6px #f00;
+    border-top: solid 6px #6f0101;
 
 }
 
@@ -68,7 +68,7 @@ select {
 
 input[type="submit"] {
     padding: 10px 20px;
-    background-color: #f00;
+    background-color: #8e2424;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -78,7 +78,13 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #c00;
+    background-color: #6f0101;
+}
+
+.result-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
 }
 
 /* Responsive Styles */

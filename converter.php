@@ -13,8 +13,17 @@ if (isset ($_POST ['submit'])) {
         $view -> result = 'Not a valid number';
     }
     else {
-        $view -> result = 'Conversion: '. $_POST['number']. ' ' . $_POST['unit'] .' is '. $result ;
+        $view -> result = $_POST['number']. ' ' . $_POST['unit'] .' is '. $result ;
     }
 }
+
+
+var_dump($_POST ['number']);
+echo '<br/>';
+var_dump($_POST ['unit']);
+echo '<br/>';
+var_dump($converter);
+echo '<br/>';
+var_dump($view);
 
 require_once('Views/converter.phtml');

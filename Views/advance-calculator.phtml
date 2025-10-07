@@ -1,0 +1,17 @@
+<?php require('template/header.phtml') ?>
+
+<form class="calculator-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <div class="form-group">
+        <label>Expression</label>
+        <input type="text" name="expression" class="form-control" placeholder="e.g., 1 + 6" value="<?php if (isset($_POST['expression'])) { echo $_POST['expression']; } ?>"/>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Calculate" name="submit" class="btn btn-primary"/>
+    </div>
+</form>
+
+<?php if (isset($view->result)) : ?>
+    <p class="result-text"><?php echo $view->result; ?></p>
+<?php endif; ?>
+
+<?php require('template/footer.phtml') ?>
