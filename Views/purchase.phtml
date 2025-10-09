@@ -1,0 +1,11 @@
+<?php require('template/header.phtml'); ?>
+
+<div class="result-text">
+    <h1>Thank you for your purchase!</h1>
+    <p>You have selected to buy the following item:</p>
+    <h2><?php echo $item; ?></h2>
+    <p>The cost will be: <strong><?php echo $cost; ?></strong></p>
+    <p style="margin-top: 30px;"><a href="querystring.php" class="btn btn-primary">Return to View Items</a></p>
+</div>
+
+<?php require('template/footer.phtml'); ?>

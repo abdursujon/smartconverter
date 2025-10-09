@@ -1,0 +1,45 @@
+<?php
+// Check if the form has been submitted
+if (isset($_POST['submit'])) {
+    // Set cookies for one hour (3600 seconds)
+    setcookie('name', $_POST['name'], time() + 3600, "/");
+    setcookie('dob', $_POST['dob'], time() + 3600, "/");
+    // Redirect to the same page to prevent form resubmission on refresh
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
+require('template/header.phtml');
+?>
+<link href="/css/calculator.css" rel="stylesheet">
+
+<?php
+// Check if the cookie is set
+if (isset($_COOKIE['name']) && isset($_COOKIE['dob'])) {
+    // If the cookie exists, display the user's information
+    echo "<div class='result-text'>";
+    echo "<h1>Welcome back, " . htmlspecialchars($_COOKIE['name']) . "!</h1>";
+    echo "<p>Your date of birth is: " . htmlspecialchars($_COOKIE['dob']) . "</p>";
+    echo "<p><a href='clear-cookies.php'>Clear my information</a></p>";
+    echo "</div>";
+} else {
+    // If the cookie does not exist, display the form
+?>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="calculator-form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" name="dob" id="dob" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+        </div>
+    </form>
+<?php
+}
+
+require('template/footer.phtml');
+?>

@@ -18,12 +18,12 @@ if (isset ($_POST ['submit'])) {
 }
 
 
-var_dump($_POST ['number']);
-echo '<br/>';
-var_dump($_POST ['unit']);
-echo '<br/>';
-var_dump($converter);
-echo '<br/>';
-var_dump($view);
+//var_dump($_POST ['number']);
+//echo '<br/>';
+//var_dump($_POST ['unit']);
+//echo '<br/>';
+//var_dump($converter);
+//echo '<br/>';
+//var_dump($view);
 
 require_once('Views/converter.phtml');

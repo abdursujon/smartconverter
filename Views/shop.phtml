@@ -1,0 +1,82 @@
+<?php
+global $view;
+require('template/header.phtml');
+
+// Product data is now stored in the view
+$products = [
+    ['name' => 'Sony TV', 'description' => '32\" LCD Widescreen', 'cost' => '£950'],
+    ['name' => 'Panasonic DVD', 'description' => 'DVD Player', 'cost' => '£80'],
+    ['name' => 'Philips Video', 'description' => 'VHS Video Recorder', 'cost' => '£110'],
+    ['name' => 'Samsung Soundbar', 'description' => 'Dolby Atmos Soundbar', 'cost' => '£350'],
+    ['name' => 'LG Blu-ray Player', 'description' => '4K Ultra HD Blu-ray Player', 'cost' => '£150'],
+    ['name' => 'Apple TV', 'description' => '4K Streaming Device', 'cost' => '£180'],
+    ['name' => 'Amazon Echo Dot', 'description' => 'Smart Speaker with Alexa', 'cost' => '£50'],
+    ['name' => 'Google Nest Hub', 'description' => 'Smart Display with Google Assistant', 'cost' => '£90'],
+    ['name' => 'Bose QuietComfort Headphones', 'description' => 'Noise Cancelling Headphones', 'cost' => '£280'],
+    ['name' => 'Sony PlayStation 5', 'description' => 'Gaming Console', 'cost' => '£450'],
+    ['name' => 'Xbox Series X', 'description' => 'Gaming Console', 'cost' => '£450'],
+    ['name' => 'Nintendo Switch', 'description' => 'Hybrid Gaming Console', 'cost' => '£280'],
+    ['name' => 'Dell XPS Laptop', 'description' => '13-inch Laptop', 'cost' => '£1200']
+];
+
+// Assign products to the view object so the buy page can access it if needed
+$view->products = $products;
+
+?>
+
+<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+
+    <div style="margin: 20px 0px; text-align: right;">
+        <a href="logout.php" class="btn btn-secondary">Logout</a>
+    </div>
+
+    <table class="table table-bordered border-dark">
+        <thead>
+        <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Cost</th>
+            <th>Purchase</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($products as $product): ?>
+            <tr>
+                <td><?php echo htmlspecialchars($product['name']); ?></td>
+                <td><?php echo htmlspecialchars($product['description']); ?></td>
+                <td><?php echo htmlspecialchars($product['cost']); ?></td>
+                <td>
+                    <form action="buy.php" method="post">
+                        <input type="hidden" name="item" value="<?php echo htmlspecialchars($product['name']); ?>">
+                        <input type="hidden" name="cost" value="<?php echo htmlspecialchars($product['cost']); ?>">
+                        <button type="submit" class="btn btn-primary">Buy</button>
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+
+<?php else: ?>
+
+    <form action="shop.php" method="post" class="calculator-form" style="max-width: 500px; margin: 50px auto;">
+        <h2 style="text-align: center;">Login</h2>
+        <?php if (!empty($view->loginError)): ?>
+            <div class="alert alert-danger"><?php echo $view->loginError; ?></div>
+        <?php endif; ?>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="login" value="Login" class="btn btn-primary btn-block">
+        </div>
+    </form>
+
+<?php endif; ?>
+
+<?php require('template/footer.phtml'); ?>
